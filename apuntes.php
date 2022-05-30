@@ -147,6 +147,144 @@
     * Se refiere a incrustar las variables dentro de cadenas de texto. Esto solo funciona cuando se usan comillas dobles, con las simples no funciona.
     */
 
-    echo "Hola, mi nombre es $miNombre $miApellido. Soy de $miPais y tengo $miEdad años.";
+    echo "Hola, mi nombre es $miNombre $miApellido. Soy de $miPais y tengo $miEdad años." . "<br>";
+
+//?---Operadores aritmeticos---
+/**
+ * *php posee los siguientes operadores:
+ * suma (+)
+ * resta (-)
+ * división (/)
+ * resto (%)
+ * multiplicación (*)
+ * potenciación (**)
+ */
+
+ $numeroA = 2; 
+ $numeroB = 4;
+
+ $numeroA += $numeroB;
+
+ echo $numeroA;
+
+//?---Operadores de asignación---
+/**
+ * *php posee los siguientes operadores:
+ * asignar (=)
+ * suma (+=)
+ * resta (-=)
+ * multiplicación (*=)
+ * división (/=)
+ * concatenar (.=)
+ */
+
+ $pruebaConcatenar = "Mi variable qlera ";
+ 
+ $pruebaConcatenar .= "esta vacia we";
+
+ echo "<br>" . $pruebaConcatenar . "<br>";
+
+   //?---Asignación por referencia---
+   /**
+    * La asignación por referencia guarda el valor de otra variable, con la diferencia de que si el valor de dicha variable a la cual estamos referenciando, cambia, también lo hará la otra.
+    */
+
+    $textoA = "Hola puto";
+
+    $asignacionA = $textoA;
+    $asignacionRef = &$textoA;
+
+    echo "Valor de la variable por asignación: $asignacionA. <br>Valor de la variable por referencia: $asignacionRef. <br>";
+
+    $textoA = "jeje te engañe";
+
+    echo "Valor de la variable por asignación: $asignacionA. <br>Valor de la variable por referencia: $asignacionRef. <br>";
+
+//?---Operadores de comparación---
+/**
+ * *php posee los siguientes operadores:
+ * igualdad (==)
+ * estricta igualdad (===)
+ * diferente (!=)
+ * diferente (<>)
+ * estrictamente diferente (!==)
+ * menor que (<)
+ * mayor que (>)
+ * menor o igual que (<=)
+ * mayor o igual que (>=)
+ * *Estos operadores devolveran un "true" (1) o un "false" (0).
+ */
+
+ var_dump(1==="1");
+
+//?---Operadores lógicos---
+/**
+ * *php posee los siguientes operadores:
+ * y (and)
+ * y (&&)
+ * o (or)
+ * o (||)
+ * no (!)
+ * *Nos permiten crear expresiones más complejas y devuelven un valor booleano.
+ */
+
+ $valorLogico1 = 3;
+ $valorLogico2 = 5;
+
+ var_dump(!($valorLogico1 == 3 && $valorLogico2 < 10 || $valorLogico1 > 3));
+
+//?---Operadores de incremento y decremento---
+/**
+ * *Nos sirven para incrementar (++) o reducir (--) en 1 el valor de una variable.
+ */
+
+ $valorInc = 0;
+
+ echo --$valorInc;
+ //Colocar el operador de incremento o decremento antes hace que el incremento ocurra primero, antes de usar la variable.
+
+//?---Estructura condicional---
+/**
+ * *Estructura simple (if)
+ * Evalua un pequeño fragmento de codigo y devuelve un valor booleano, en caso de que el valor sea "true", se ejecutara entonces un bloque de codigo, en caso de que sea "false" se saltara el bloque de codigo.
+ */
+ 
+ if(1>0) {
+  echo "<br>Es mayor.<br>";
+ }
+ //Otra sintaxis es:
+ if(1>0):
+  echo "Ta fea la sintaxis.<br>";
+ endif;
+ //Usualmente se usa esta sintaxis cuando se trabaja con codigo php incrustado en html, aunque la sintaxis de las llaves tambien sirve igual.
+
+/**
+ * *Estructura doble (if-else)
+ * En esta estructura si la condición inicial es "false", entonces se ejecuta otro bloque de codigo.
+ */
+
+ if(5>10) {
+   echo "El numero es mayor.";
+ } else {
+   echo "El numero es menor.";
+ }
+ //Sintaxis alternativa
+ if(5>10) : 
+  echo "El numero es mayor.";
+ else: 
+  echo "<br>El numero es menor y ta fea la sintaxis.<br>";
+ endif;
+
+/**
+ * *Operador ternario (a ? b : c)
+ * <operador> ? <true value> : <false value>
+ */
+ //!No se puede usar echo en el operador ternario.
+
+ (1>0) ? $mensaje = "Si es mayor que 0" : $mensaje = "No es mayor que cero";
+
+ echo $mensaje;
+
+
 
 ?>
