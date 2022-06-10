@@ -3,7 +3,7 @@
     echo "Hola Mundo";
 
     $resA = 0;
-    echo "<br>Código insertado con include<br>";
+    echo "<br>Código insertado con require<br>";
  for ($i = 0; $i < 11; $i++) {
    $resA += $i;
    echo $resA . "<br>";

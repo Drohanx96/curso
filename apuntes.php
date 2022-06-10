@@ -285,6 +285,231 @@
 
  echo $mensaje;
 
+/**
+ * *Estructura condicional múltiple (if-elseif)
+ * Una estructura condicional con multiples condiciones.
+ */
+
+ if (0 < 0) {
+   echo "Es menor que 0.";
+ } elseif (0 > 0) {
+   echo "Es mayor que 0.";
+ } else {
+   echo "Es igual a 0.";
+ }
+
+ //Sintaxis alternativa
+ if (0 < 0): 
+  echo "Es menor que 0.";
+ elseif (0 > 0):
+  echo "Es mayor que 0.";
+ else:
+  echo "Es igual a 0.";
+ endif;
+
+/**
+ * *Estructuras condicionales anidadas
+ * Se trata de meter estructuras condicionales dentro de otras. 
+ */
+
+ $edad = 55;
+ $sexo = "F";
+
+ if ($sexo == "M") {
+   if ($edad >= 60) {
+     echo "Usted puede jubilarse.";
+   } else {
+      echo "Usted no cumple con el requisito de edad.";
+   }
+ } else {
+   if ($edad > 54) {
+     echo "Usted puede jubilarse.";
+   } else {
+    echo "Usted no cumple con el requisito de edad.";
+   }
+ }
+
+//?---Estructura de selección multiple---
+/**
+ * *Estructura de selección multiple (switch)
+ * Estructura que permite seleccionar entre varias opciones.
+ */
+
+ $diaS = 9;
+
+ switch ($diaS) {
+   case 1:
+    echo "Lunes.";
+   break;
+   case 2:
+    echo "Martes.";
+   break;
+   case 3:
+    echo "Miercoles.";
+   break;
+   case 4:
+    echo "Jueves.";
+   break;
+   case 5:
+    echo "Viernes.";
+   break;
+   case 6:
+    echo "Sabado.";
+   break;
+   case 7:
+    echo "Domingo.";
+   break;
+   default:
+   echo "Ingrese un valor valido (1-7)";
+ }
+
+/**
+ * *Estructura de selección multiple (match)
+ * Muy distinta a la estructura switch, entre las diferencias que podemos notar estan: 
+ * 1) Que en esta se evalua una comparación de estricta igualdad (===) y no una de comparación (==).
+ * 2) También, el resultado de la estructura debe ser almacenado en una variable.
+ * 3) Esta se basa en comparar el valor de una variable con los valores de otras variables y asignar luego un valor o instrucción a dicha variable.
+ * 4) Para usarse se debe asignar toda la estructura a una variable donde se guardará el resultado.
+ */
+//!Podemos comparar los valores de la variable con valores que coloquemos del lado de la comparaciñon.
+//!Podemos comparar con más de un valor haciendo uso de comas ",".
+//!Podemos trabajar con datos  booleanos.
+
+ $abc = "c";
+
+ $x = "a";
+ $y = "b";
+ $z = "c";
+
+ $res = match ($abc) {
+   $x => "La primera letra del abc.",
+   $y => "La segunda letra del abc.",
+   $z => "La tercera letra del abc.",
+   default => "Ingresa un valor valido"
+ };
+
+ echo $res . "<br>";
+
+//?---Bucles---
+/**
+ * *Estructura repetitiva (while)
+ * Estructura que repite una acción mientras la condición sea verdadera. 
+ */
+
+ $ii = 0;
+
+ while ($ii <= 20) {
+   echo $ii . "<br>";
+   $ii++;
+ }
+
+ //Al igual que las anteriores estructuras de control, posee una sintaxis alternativa, que a partir de ahora omitiré. Si se desea usar, buscarla por su cuenta.
+
+/**
+ * *Estructura repetitiva (do-while)
+ * Igual a la anterior, con la diferencia de que primero se ejecuta el codigo que esta dentro del bucle y luego se evalua la condición. De esta forma, el codigo SIEMPRE se ejecutará al menos una vez.
+ */
+
+ $jj = -10;
+ 
+ echo "El bucle empieza en: $jj." . "<br>";
+
+ do {
+   echo $jj + 1 . "<br>";
+   $jj++;
+ } while ($jj < 0);
+
+ echo "Y termina en: " .  $jj + 1 . "." . "<br>";
+
+ //Esta estructura no posee sintaxis alternativa.
+
+/**
+ * *Estructura repetitiva (for)
+ * El ciclo for de toda la vida. 
+ */
+ 
+ $resA = 0;
+
+ for ($i = 0; $i < 11; $i++) {
+   $resA += $i;
+   echo $resA . "<br>";
+
+ }
+
+/**
+ * *Estructura repetitiva (foreach)
+ * Este ciclo solo puede ser usado sobre arrays, si se intenta usar de otra forma emitira un error. Admite hasta tres parametros, dependiendo del tipo de array que usemos (escalar o asociativo).
+ */
+
+ $alumnosA = ["Pedro", "Maria", "Monica", "Johan", "Jose"];
+
+ foreach($alumnosA as $key => $value) {
+   echo $key . " - " . $value . "<br>";
+
+ }
+ //Aqui podemos pasar tres parametros para que nos indique el indice del vector, de otra forma solo mostraria los valores de este.
+
+ $pcComp = [
+   "Monitor" => 20,
+   "Case" => 100,
+   "Mouse" => 5,
+   "Keyboard" => 7,
+   "Altavoces" => 10
+ ];
+
+ foreach ($pcComp as $artPc => $precio ) {
+   echo $artPc . " = " . $precio . "<br>";
+ }
+ //Al ser un array asociativo, es conveniente usar los tres parametros, de esta forma nos queda algo como una lista de precios con su articulo.
+
+/**
+ * *Interrumpir y Saltar un ciclo (break-continue)
+ * Break se usa para interrumpir un ciclo.
+ * Continue se usa para saltar una iteración del codigo.
+ */
+
+ for($ij = 0; $ij <= 10; $ij++){
+   if($ij % 2 != 0) {
+     continue;
+   }
+
+   echo $ij . "<br>";
+ }
+
+ for($ji = 0; $ji <= 10; $ji++) {
+   if($ji == 5) {
+     break;
+   }
+   echo $ji . "<br>";
+ }
+
+//?---Incluir archivos---
+/**
+ * Podemos incluir otros ficheros en nuestros scripts de php
+ */
+
+/**
+ * *Include
+ * Inserta en nuestro script un bloque de codigo que procede de otro archivo, si el otro archivo no existe o si contiene algun tipo de error se mostrará un "warning" por pantalla y el script seguirá ejecutandose. 
+ */
+
+ include_once("prueba.php");
+ echo "<br>Segunda llamada del include<br>";
+ include_once("prueba.php");
+ //Al usar include_once, evita que se vuelva a ejecutar el codigo aunque se llame.
 
 
+/**
+ * *Require
+ * hace la misma operación que el include, con la diferencia de que si el archivo no existe o si hay un error, mostrará "fatal error" por pantalla y detendra la ejecución del script. 
+ */
+
+ require("prueba1.php");
+ echo "<br>Segunda llamada del require<br>";
+ require("prueba1.php");
+
+ //!Ambos tienen una segunda forma de ser llamadas y es usan "_once" despues del require o include. Esto lo que hace es que el codigo solo se incluye una vez.
+ //!Hay dos tipos de sintaxis, con o sin parentesis "()".
+
+ 
 ?>
