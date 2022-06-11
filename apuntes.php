@@ -511,5 +511,105 @@
  //!Ambos tienen una segunda forma de ser llamadas y es usan "_once" despues del require o include. Esto lo que hace es que el codigo solo se incluye una vez.
  //!Hay dos tipos de sintaxis, con o sin parentesis "()".
 
- 
+//?---Funciones propias---
+/**
+ * *Crear funciones y llamarlas en el mismo archivo
+ * Las funciones de toda la vida. Puedes empezar a escribirlas con una letra o guion bajo (_). En php se declara: 
+ * function nombreDeLaFuncion($parametros) {
+ *  "codigo";
+ *  return;
+ * }
+ */
+
+ function sumarNumeros($a, $b) {
+  return "<br>El resultado de la suma de $a y $b es: " . $a + $b . "<br>";
+ }
+
+ $resultadoa = sumarNumeros(3, 5);
+ echo $resultadoa;
+
+ $c = 1;
+ $d = 3;
+ echo sumarNumeros($c, $d);
+
+ echo sumarNumeros($e = 7, $f = 5);
+ //Aqui observamos diferentes maneras de mostrar o interactuar con el resultado de las funciones.
+
+/**
+ * *Incluir y llamar funciones desde otro archivo
+ * Se incluye de igual forma que las anteriores. Con la diferencia de que más adelante hay que llamar a la función y pasar parametros. Podemos usar include o require y sus variaciones con _once.
+ */
+
+ include("funcionNotas.php");
+
+ echo "El promedio es: " . promedioNotas(1, 2, 3);
+ //!Tener cuidado con los archivos que se incluyen. Aqui tuve un error porque estaba llamando a un archivo externo que ya habia llamado anteriormente para otra practica, por lo tanto, la función esta entregando errores (supongo que por las numerosas llamadas sin declarar).
+
+//?---Funciones predefinidas de php---
+/**
+ * *Funciones para strings
+ */
+
+ $stringPrueba = "Hola mundo";
+
+ echo "El string tiene " . strlen($stringPrueba) . " letras" . "<br>";
+ //Tamaño del string
+ //!Esta función tambien cuenta los caracteres para hacer salto de linea
+ //!NO USAR EL CARACTER DE SALTO DE LINEA DENTRO DEL STRING, MEJOR CONCATENAR AL FINAL CON . "<BR>".
+
+ echo "El string tiene " . str_word_count($stringPrueba) . " palabras" . "<br>";
+ //Cuenta el número de palabras del string
+ //!Tambien cuenta el caracter de salto de linea como palabra.
+
+ echo strtolower($stringPrueba) . "<br>";
+ //Formatear todas las letras a minusculas
+
+ echo strtoupper($stringPrueba) . "<br>";
+ //Formatear todas las letras a mayusculas
+
+ echo ucfirst($stringPrueba) . "<br>";
+ //Primera letra mayuscula
+
+ echo ucwords($stringPrueba) . "<br>";
+ //Primera letra de cada palabra en mayuscula
+
+  /**
+   * *Transformar un string en un array
+   * Se logra a través de una función usando dos parametros obligatorios y uno opcional: explode(delimitador, string, limitador(opcional));
+   * El delimitador es el caracter que identificara la funcion que es el encargado de separar los datos del string.
+   * El limitador nos limita en cuentas partes o valores va a estar dividido el array.
+   */
+
+   $fecha1 = "03/05/96";
+   $fecha2 = "03-05-96";
+   $listaA = "huevos harina leche azucar";
+   $listaB = "huevos, harina, leche, azucar";
+
+   $arrayFecha1 = explode("/", $fecha1);
+
+   for($ia = 0; $ia <= 2; $ia++ ) {
+    echo $arrayFecha1[$ia] . "<br>";
+   }
+
+   $arrayListaA = explode(" ", $listaA, 2);
+
+   for($iab = 0; $iab <= 1; $iab++ ) {
+    echo $arrayListaA[$iab] . "<br>";
+   }
+   //Aqui vemos como el indice 0 esta ocupado por huevos, mientras que el indice 1 esta ocupado por todo el resto del string (harina leche azucar).
+
+   $arrayListaB = explode(", ", $listaB, -1);
+
+   for($iab = 0; $iab <= 2; $iab++ ) {
+    echo $arrayListaB[$iab] . "<br>";
+   }
+   //hay que jugar un poco con el delimitador para tener los arrays como se desea.
+   //cuando se usa un limitador negativo, se interpreta como, que se va a dividir el string en tantos valores tenga menos el ultimo o los equis numeros negativos.
+
+/**
+ * *Funciones matematicas
+ * 
+ */
+
+
 ?>
