@@ -608,8 +608,87 @@
 
 /**
  * *Funciones matematicas
+ * Alguns de las funciones más usadas
+ */
+
+ echo pow(2, 3) . "<br>";//el primer argumento es la base y el segundo el exponente.
+ echo sqrt(36) . "<br>";//raiz cuadrada.
+ echo rand(0,10) . "<br>";//genera un numero aleatorio entre un valor minimo y uno máximo (incluye a los valores extremos).
+ echo pi() . "<br>";//funcion que devuelve el valor de pi.
+ echo floor(4.9) . "<br>";//esta función redondea los numeros flotantes. Su lógica de acción es si tiene decimales (asi sea mayor a 5) se redondea hacia abajo.
+ echo ceil(4.1) . "<br>";//esta función hace lo opuesto a la anterior. Redondea hacia arriba aunque el decimal sea menor a 5.
+ echo round(4.567, 1) . "<br>";//esta función redondea los numeros decimales. Si el decimal es <= 4 redonde hacia abajo y si es >= 5 redondea hacia arriba. Adicionalmente, se le puede pasar otro argumento, este indicará el número de decimales que se desea mostrar.
+
+/**
+ * *Formatear numeros
+ * number_formar(cantidad, decimales, separadorDecimal, separadorMillar);
+ * En esta función podemos trabajar con 1, 2 y 4 parametros.
+ * !al usar un solo valor, se usará la notación inglesa (se eliminan los decimales redondeando la cantidad usando un round() y el separador de millar es una coma ",").
+ */
+
+ echo number_format(53567.9090) . "<br>";
+ echo number_format(53567.9090, 2) . "<br>";
+ echo number_format(53567.9090, 2, ".", " ") . "<br>";
+
+//?---Fecha y hora---
+/**
+ * *Fecha en ingles
+ */
+
+ date_default_timezone_set("America/Caracas");//Esta función se usa para establecer una zona horaria.
+
+ echo date("d") . "<br>";//muestra la fecha del 01 al 31
+ echo date("D") . "<br>";//muestra el día de la semana en ingles, usando tres letras
+ echo date("j") . "<br>";//muestra la fecha como el valor "d", pero sin ceros iniciales
+ echo date("l") . "<br>";//muestra el día de la semana en ingles completo
+ echo date("Y-m-d") . "<br>";//Ejemplo de como usar la función de manera combinada usando diferentes parametros. Los caracteres que no reconozca la función los retornará tal como estan, por lo tanto podemos darle nosotros mismos el formato. 
+ //!Revisar la documentación para ver más parametros de la función. 
+ echo date("h:i a") . "<br>";//Ejemplo de la hora
+
+ //!Si quieres la fecha en español tendras que hacer una función para traducirla.
+ //!Usando la función strtotime(valor); podemos transformar un string en una fecha con el formato del string. date("fechaString", strtotime($fechaString));
+ 
+//?---Encriptar contraseñas---
+/**
+ * *Hash 
+ * es un algoritmo matemático que transforma cualquier bloque de datos en una nueva serie de caractéres de longitud fija. Independientemente de la cantidad de caracteres de entrada, siempre tendrá una cantidad fija de caracteres de salida.
+ */
+
+ $passEx = "HolaMundo123";
+
+ echo md5($passEx) . "<br>";
+ echo sha1($passEx) . "<br>";
+ //De los metodos de encriptación más antiguos. Generan cadenas de números y letras minusculas unicamente. 
+ //!Debido al poder de computo de la actualidad, es desacobcejable usar estas funciones porque son facilmente decifradas.
+
+/**
+ * *hash();
+ * es una función que admite dos parametros. El primero es el nombre del algoritmo de codificación y el segundo es el string. hash("md5", $contraseña);
+ * Esta función funciona con muchisimos algoritmos de encriptación.
+ */
+/**
+ * *password_hash();
+ * Esta es la función recomendada para generar hashes seguros debido a dos factores. 1) los hashes son más complejos y 2) no son fijos, cada vez que se recarguen serán diferentes.
+ * Esta admite más parámetros. La cadena que se quiere encryptar, el tipo de algoritmo (PASSWORD_DEFAULT y PASSWORD_BCRYPT) y el coste, el cual se accesede a traves de un array ["cost"=>10] (10 es el coste predeterminado).
+ */
+
+ $passExHash= password_hash($passEx, PASSWORD_DEFAULT);
+ echo $passExHash . "<br>";
+ //!el algoritmo debe estar en mayuscula.
+
+/**
+ * *password_verify();
+ * Esta función sirve para verificar que sea un hash valido generado por la función password_hash. 
+ * Admite dos parametros, el primero será la cadena original y el segundo será el hash generado por el password_hash. Devuelve un true o false.
+ */
+
+ echo password_verify($passEx, $passExHash) . "<br>";
+
+//?---Formularios con php---
+/**
  * 
  */
 
+ 
 
 ?>
